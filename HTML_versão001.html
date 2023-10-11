@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Table App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <form method="POST" action="/merge">
+            <label for="delta">Delta:</label>
+            <input type="number" name="delta" min="1" max="{{ rows }}" required>
+            <button type="submit" class="btn btn-primary">Merge</button>
+            <a href="/reset" class="btn btn-danger">Reset</a>
+        </form>
+        <table class="table table-bordered">
+            <tbody>
+                {% for row in range(rows) %}
+                    <tr>
+                        {% for col in range(cols) %}
+                            {% if merged[row][col] %}
+                                <td bgcolor="#FFFF00">{{ table[row][col] }}</td>
+                            {% else %}
+                                <td>{{ table[row][col] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
